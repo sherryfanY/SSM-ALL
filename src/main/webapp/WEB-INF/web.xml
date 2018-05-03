@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" id="SpringMVC-Spring-Mybatis-01" 
+						xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" 
+						xmlns="http://java.sun.com/xml/ns/javaee" 
+						xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <display-name>SpringMVC-Spring-Mybatis-01</display-name>
+  <!-- 配置前端控制器 -->
+<servlet>
+	<servlet-name>dServlet</servlet-name>
+	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+	<init-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:/spring/applicationContext*.xml</param-value>
+	</init-param>
+	<load-on-startup>1</load-on-startup>
+</servlet>
+<servlet-mapping>
+	<servlet-name>dServlet</servlet-name>
+	<url-pattern>/</url-pattern>
+</servlet-mapping>
+
+<!-- 使用过滤器时可以使用拦截所有的路径
+	过滤器是springMVC组件中的过滤器,是一种不完全的servlet,不处理请求和响应
+	主要用于对HttpServletRequest 进行预处理，也可以对HttpServletResponse 进行后处理，
+	是个典型的处理链.
+	
+	创建一个filter:
+	1 写一个filter的处理类,必须继承javax.servlet.Filter接口 
+	2 在web.xml中对filter进行配置
+
+ -->
+<filter>
+	<filter-name>charactorEncoding</filter-name>
+	<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>	
+	<init-param>
+		<param-name>encoding</param-name>
+		<param-value>UTF-8</param-value>	
+	</init-param>
+</filter>
+<filter-mapping>
+	<filter-name>charactorEncoding</filter-name>
+	<url-pattern>/*</url-pattern>
+</filter-mapping>
+</web-app>
+
+
